@@ -4,6 +4,9 @@
   "description": "Save Spotify tracks",
   "main": "index.js",
   "scripts": {
+    "authorize": "node bin/authorize.js",
+    "is-track-saved": "node bin/is-track-saved.js",
+    "toggle-save-track": "node bin/toggle-save-track.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": "Spotify",
