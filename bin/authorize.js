@@ -1,5 +1,5 @@
 const express = require('express')
-const opn = require('opn')
+const open = require('open')
 const spotifyApi = require('../lib/spotify-api')
 
 const scopes = [
@@ -31,4 +31,4 @@ spotifyApi.setRedirectURI('http://localhost:3000/callback')
 
 const authorizeURL = spotifyApi.createAuthorizeURL(scopes, 'state')
 
-opn(authorizeURL)
+open(authorizeURL)
