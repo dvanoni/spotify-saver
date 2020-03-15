@@ -9,6 +9,8 @@ const scopes = [
   'user-follow-modify',
 ]
 
+const port = 7777
+
 const app = express()
 
 app.get('/callback', function (req, res) {
@@ -25,9 +27,9 @@ app.get('/callback', function (req, res) {
     })
 })
 
-app.listen(3000)
+app.listen(port)
 
-spotifyApi.setRedirectURI('http://localhost:3000/callback')
+spotifyApi.setRedirectURI(`http://localhost:${port}/callback`)
 
 const authorizeURL = spotifyApi.createAuthorizeURL(scopes, 'state')
 
