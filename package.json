@@ -14,10 +14,10 @@
   "author": "david@dvanoni.com",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^4.0.0",
-    "express": "^4.15.4",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "lowdb": "^1.0.0",
     "open": "^7.0.3",
-    "spotify-web-api-node": "^2.5.0"
+    "spotify-web-api-node": "^4.0.0"
   }
 }
