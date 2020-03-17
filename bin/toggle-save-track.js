@@ -1,20 +1,28 @@
-if (process.argv.length !== 3) {
-  console.error('You must provide a track ID as the first argument')
-  process.exit(1)
-}
-
-const trackID = process.argv[2]
+const {
+  displayNotification,
+  getCurrentSpotifyTrackID,
+  getCurrentSpotifyTrackName,
+ } = require('../lib/jxa')
 
 const spotifyApi = require('../lib/spotify-api').withCredentials()
 
-spotifyApi.toggleSaveTrack(trackID)
-  .catch((error) => {
-    if (error.statusCode === 401) {
-      // Refresh credentials and retry
-      return spotifyApi.refreshCredentials()
-        .then(() => spotifyApi.toggleSaveTrack(trackID))
-    }
-    return Promise.reject(error)
-  })
-  .catch((error) => 'An error occurred: ' + error.message)
+async function main() {
+  const trackID = await getCurrentSpotifyTrackID()
+
+  const saved = await spotifyApi.performWithRetry(
+    () => spotifyApi.toggleSaveTrack(trackID)
+  )
+
+  const trackName = await getCurrentSpotifyTrackName()
+  const message = saved
+    ? 'Saved to Your Library!'
+    : 'Removed from Your Library'
+
+  await displayNotification(message, trackName)
+
+  return `${message}\n${trackName}`
+}
+
+main()
+  .catch(error => 'An error occurred: ' + error.message)
   .then(console.log)
