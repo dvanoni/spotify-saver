@@ -1,12 +1,13 @@
 
 const { getCurrentSpotifyTrackID } = require('../lib/jxa')
+const SpotifyClient = require('../lib/spotify-client')
 
-const spotifyApi = require('../lib/spotify-api').withCredentials()
+const spotify = new SpotifyClient()
 
 getCurrentSpotifyTrackID()
   .then(trackID =>
-    spotifyApi.performWithRetry(
-      () => spotifyApi.isTrackSaved(trackID)
+    spotify.performWithRetry(
+      () => spotify.isTrackSaved(trackID)
     )
   )
   .catch(() => false)

@@ -1,6 +1,8 @@
 const express = require('express')
 const open = require('open')
-const spotifyApi = require('../lib/spotify-api')
+const SpotifyClient = require('../lib/spotify-client')
+
+const spotify = new SpotifyClient({ skipCredentialsCheck: true })
 
 const scopes = [
   'user-library-read',
@@ -14,7 +16,7 @@ const port = 7777
 const app = express()
 
 app.get('/callback', function (req, res) {
-  spotifyApi.requestCredentials(req.query.code)
+  spotify.requestCredentials(req.query.code)
     .then(() => {
       res.send('Successfully authorized!')
     }, (error) => {
@@ -29,8 +31,8 @@ app.get('/callback', function (req, res) {
 
 app.listen(port)
 
-spotifyApi.setRedirectURI(`http://localhost:${port}/callback`)
+spotify.api.setRedirectURI(`http://localhost:${port}/callback`)
 
-const authorizeURL = spotifyApi.createAuthorizeURL(scopes, 'state')
+const authorizeURL = spotify.api.createAuthorizeURL(scopes, 'state')
 
 open(authorizeURL)

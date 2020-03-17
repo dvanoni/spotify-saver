@@ -4,13 +4,15 @@ const {
   getCurrentSpotifyTrackName,
  } = require('../lib/jxa')
 
-const spotifyApi = require('../lib/spotify-api').withCredentials()
+const SpotifyClient = require('../lib/spotify-client')
+
+const spotify = new SpotifyClient()
 
 async function main() {
   const trackID = await getCurrentSpotifyTrackID()
 
-  const saved = await spotifyApi.performWithRetry(
-    () => spotifyApi.toggleSaveTrack(trackID)
+  const saved = await spotify.performWithRetry(
+    () => spotify.toggleSaveTrack(trackID)
   )
 
   const trackName = await getCurrentSpotifyTrackName()
