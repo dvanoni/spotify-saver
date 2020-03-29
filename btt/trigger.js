@@ -9,7 +9,10 @@
   ) === 'com.spotify.client'
 
   if (!isSpotifyPlaying) {
-    return returnToBTT(JSON.stringify({ text: '' }))
+    return returnToBTT(JSON.stringify({
+      text: 'Unknown',
+      icon_path: `${iconPath}/md-help-circle-outline.png`,
+    }))
   }
 
   const isTrackSaved = JSON.parse(await runShellScript({
