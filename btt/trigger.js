@@ -1,7 +1,7 @@
 (async () => {
   const npmPath = '$HOME/.nodenv/shims/npm'
   const projectPath = '$HOME/Developer/projects/spotify-saver'
-  const iconPath = '/Applications/Setapp/BetterTouchTool.app/Contents/Resources/icons/ioniconpng'
+  const iconPath = '/Applications/BetterTouchTool.app/Contents/Resources/icons/ioniconpng'
 
   const isSpotifyPlaying = await callBTT(
     'get_string_variable',
