@@ -11,8 +11,8 @@
   "keywords": [
     "Spotify"
   ],
-  "author": "david@dvanoni.com",
-  "license": "ISC",
+  "author": "david@vanoni.dev",
+  "license": "MIT",
   "dependencies": {
     "@jxa/run": "^1.3.2",
     "dotenv": "^8.2.0",
