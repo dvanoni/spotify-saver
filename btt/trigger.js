@@ -1,5 +1,5 @@
 (async () => {
-  const npmPath = '$HOME/.nodenv/shims/npm'
+  const npmPath = '$HOME/.asdf/shims/npm'
   const projectPath = '$HOME/Developer/projects/spotify-saver'
   const iconPath = '/Applications/BetterTouchTool.app/Contents/Resources/icons/ioniconpng'
 
